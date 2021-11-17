@@ -1,0 +1,10 @@
+ID_barang,nama_barang,jumlah_barang,harga_satuan,subtotal,ID_struk
+PEPSO,Pepsodent,10,1500,15000,123456789
+AQUA,Aqua Botol 1 Liter,1,5000,5000,123456789
+MIE_1,Indomi Goreng,5,2000,10000,123456789
+PEPSO,Pepsodent,10,1500,15000,123456790
+AQUA,Aqua Botol 1 Liter,1,5000,5000,123456790
+MIE_1,Indomi Goreng,5,2000,10000,123456790
+PEPSO,Pepsodent,10,1500,15000,123456791
+AQUA,Aqua Botol 1 Liter,1,5000,5000,123456791
+MIE_1,Indomi Goreng,5,2000,10000,123456791
