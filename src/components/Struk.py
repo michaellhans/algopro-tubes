@@ -1,8 +1,8 @@
 from datetime import date
 import random
 
-from Transaksi import Transaksi
-from Database import *
+from .Transaksi import Transaksi
+from .Database import DB
 
 class Struk:
     def __init__(self):

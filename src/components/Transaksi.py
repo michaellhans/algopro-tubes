@@ -1,4 +1,4 @@
-from Database import *
+from .Database import *
 
 class Transaksi:
     def __init__(self, barang, jumlah, id_struk):

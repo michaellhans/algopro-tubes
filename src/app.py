@@ -1,4 +1,4 @@
-from System import *
+from components.System import *
 
 System = System()
 print("Selamat datang di Toko Swalayan Algoritma dan Pemrograman B!")

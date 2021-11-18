@@ -1,5 +1,5 @@
-from Struk import Struk
-from Database import *
+from .Struk import Struk
+from .Database import *
 
 # System Class
 class System:
@@ -38,7 +38,7 @@ class System:
 
     def create_struk(self):
         self.active_struk = Struk()
-        print("CREATE_STRUK sukses. ID Struk: %s. Struk aktif: %s" % (self.active_struk.id))
+        print("CREATE_STRUK sukses. ID Struk: %s. Struk aktif: %s" % (self.active_struk.id, self.active_struk.id))
 
     def insert_struk(self, rest_command):
         self.check_active_struk(error_message="INSERT gagal. ")
@@ -55,15 +55,15 @@ class System:
         self.check_active_struk(error_message="PAYMENT gagal. ")
         nominal = int(rest_command[0])
         self.active_struk.set_payment(nominal)
-        self.active_struk = None
         print('PAYMENT pada struk ' + self.active_struk.id + ' berhasil. '\
             'Pembayaran ' + str(self.active_struk.payment) + '. Total Pembelian ' + str(self.active_struk.total) + '. '\
             'Kembalian ' + str(self.active_struk.exchange) + '. Struk berhasil disimpan dan dihapus dari struk aktif.')
+        self.active_struk = None
 
     def cancel_struk(self):
         self.check_active_struk(error_message="CANCEL_STRUK gagal. ")
-        self.active_struk = None
         print("STRUK %s berhasil dihapus dari memori." % self.active_struk.id)
+        self.active_struk = None
 
     def display_struk(self, start_date, end_date):
         # TO DO LIST
