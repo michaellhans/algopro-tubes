@@ -18,11 +18,13 @@ class Database:
     def select_barang(self, barang):
         return self.tabel_barang[self.tabel_barang['nama_barang'] == barang].iloc[0]
 
-    def select_struk(self, start_date, end_date=""):
-        if (end_date == ""):
-            return self.tabel_struk[(self.tabel_struk['date'] >= start_date)]
-        else:
-            return self.tabel_struk[(self.tabel_struk['date'] >= start_date) & (self.tabel_struk['end_date'] <= end_date)]
+    def select_struk(self, start_date="", end_date=""):
+        # TO DO LIST
+        pass
+
+    def select_best_product(self, start_date="", end_date=""):
+        # TO DO LIST
+        pass
 
     def save(self):
         self.tabel_transaksi.to_csv(PATH + "T_TRANSAKSI.csv", index=False)

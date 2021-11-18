@@ -34,7 +34,7 @@ class Struk:
     
     def set_payment(self, payment):
         if (self.total == 0):
-            raise Exception('Anda belum melakukan kalkulasi atau menentukan barang yang dibeli.')
+            raise Exception('PAYMENT pada struk ' + self.id + ' gagal. Anda belum melakukan kalkulasi atau menentukan barang yang dibeli.')
 
         elif (payment < self.total):
             raise Exception('PAYMENT pada struk ' + self.id + ' gagal. Pembayaran tidak cukup.')
