@@ -70,17 +70,17 @@ class System:
         print("STRUK %s berhasil dihapus dari memori." % self.active_struk.id)
         self.active_struk = None
 
-    def display_struk(self, start_date, end_date):
+    def display_struk(self, rest_command):
         # TO DO LIST
         # HINT: Backend codenya ada di Database
         pass
 
-    def display_peak(self, start_date="", end_date=""):
+    def display_peak(self, rest_command):
         # TO DO LIST
         # HINT: Backend codenya ada di Database
         pass
 
-    def best_product(self, start_date="", end_date=""):
+    def best_product(self, rest_command):
         # TO DO LIST
         # HINT: Backend codenya ada di Database
         pass

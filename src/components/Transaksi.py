@@ -12,8 +12,8 @@ class Transaksi:
 
     def to_csv(self):
         return {
-            "ID_barang": self.id_barang,
             "ID_struk": self.id_struk,
+            "ID_barang": self.id_barang,
             "nama_barang": self.barang,
             "jumlah_barang": self.jumlah,
             "harga_satuan": self.harga_satuan,

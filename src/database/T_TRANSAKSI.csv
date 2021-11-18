@@ -1,14 +1,16 @@
-ID_barang,ID_struk,nama_barang,jumlah_barang,harga_satuan,subtotal
-PEPSO,123456789,Pepsodent,10,1500,15000
-AQUA,123456789,Aqua Botol 1 Liter,1,5000,5000
-MIE_1,123456789,Indomi Goreng,5,2000,10000
-PEPSO,123456790,Pepsodent,10,1500,15000
-AQUA,123456790,Aqua Botol 1 Liter,1,5000,5000
-MIE_1,123456790,Indomi Goreng,5,2000,10000
-PEPSO,123456791,Pepsodent,10,1500,15000
-AQUA,123456791,Aqua Botol 1 Liter,1,5000,5000
-MIE_1,123456791,Indomi Goreng,5,2000,10000
-1,77957,Pepsodent,12,15000,180000
-2,10566,Aqua Botol 1 Liter,1,5000,5000
-1,10566,Pepsodent,10,1500,15000
-3,10566,Indomie Goreng,5,2000,10000
+ID_struk,ID_barang,nama_barang,jumlah_barang,harga_satuan,subtotal
+12345,PEPSO,Pepsodent,10,1500,15000
+12345,AQUA,Aqua Botol 1 Liter,1,5000,5000
+12345,MIE_1,Indomi Goreng,5,2000,10000
+12346,PEPSO,Pepsodent,10,1500,15000
+12346,AQUA,Aqua Botol 1 Liter,1,5000,5000
+12346,MIE_1,Indomi Goreng,5,2000,10000
+12347,PEPSO,Pepsodent,10,1500,15000
+12347,AQUA,Aqua Botol 1 Liter,1,5000,5000
+12347,MIE_1,Indomi Goreng,5,2000,10000
+77957,1,Pepsodent,12,15000,180000
+10566,2,Aqua Botol 1 Liter,1,5000,5000
+10566,1,Pepsodent,10,1500,15000
+10566,3,Indomie Goreng,5,2000,10000
+56119,1,Pepsodent,10,1500,15000
+56119,3,Indomie Goreng,5,2000,10000
