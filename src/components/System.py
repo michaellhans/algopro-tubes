@@ -1,5 +1,6 @@
 from .Struk import Struk
 from .Database import *
+import re
 
 # System Class
 class System:
@@ -8,9 +9,9 @@ class System:
     
     def run(self, command: str):
         try:
-            command_list = command.split(" ")
+            command_list = command.split(" ", 1)
             main_command = command_list[0]
-            rest_command = command_list[1:]
+            rest_command = command_list[1] if (len(command_list) == 2) else None
             if (main_command == 'CREATE_STRUK'):
                 self.create_struk()
             elif (main_command == 'INSERT'):
@@ -31,10 +32,9 @@ class System:
                 quit()
             else:
                 raise Exception("Command tidak valid")
-        
+
         except Exception as e:
             print(e)
-
 
     def create_struk(self):
         self.active_struk = Struk()
@@ -42,9 +42,14 @@ class System:
 
     def insert_struk(self, rest_command):
         self.check_active_struk(error_message="INSERT gagal. ")
-        nama_barang, jumlah_barang = rest_command[0].replace('"', ''), int(rest_command[1])
-        self.active_struk.insert(nama_barang, jumlah_barang)
-        print("INSERT pada struk %s sukses. Barang %s. Jumlah barang %d." % (self.active_struk.id, nama_barang, jumlah_barang))
+        is_valid = re.match("\"[\w\s]+\" [0-9]+", rest_command)
+        if (is_valid):
+            rest_command_arr = rest_command.rsplit(" ", 1)
+            nama_barang, jumlah_barang = rest_command_arr[0].replace('"', ''), int(rest_command_arr[1])
+            self.active_struk.insert(nama_barang, jumlah_barang)
+            print("INSERT pada struk %s sukses. Barang %s. Jumlah barang %d." % (self.active_struk.id, nama_barang, jumlah_barang))
+        else:
+            raise Exception("INSERT pada struk %s gagal. Sintaks salah." % (self.active_struk.id))
 
     def calculate_struk(self):
         self.check_active_struk(error_message="CALCULATE_STRUK gagal. ")
@@ -53,7 +58,7 @@ class System:
 
     def payment(self, rest_command):
         self.check_active_struk(error_message="PAYMENT gagal. ")
-        nominal = int(rest_command[0])
+        nominal = int(rest_command)
         self.active_struk.set_payment(nominal)
         print('PAYMENT pada struk ' + self.active_struk.id + ' berhasil. '\
             'Pembayaran ' + str(self.active_struk.payment) + '. Total Pembelian ' + str(self.active_struk.total) + '. '\

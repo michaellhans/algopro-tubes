@@ -14,8 +14,11 @@ class Struk:
         self.transactions = []
 
     def insert(self, barang, jumlah):
-        transaksi = Transaksi(barang, jumlah, self.id)
-        self.transactions.append(transaksi)
+        try:
+            transaksi = Transaksi(barang, jumlah, self.id)
+            self.transactions.append(transaksi)
+        except:
+            raise Exception("INSERT pada struk %s gagal. Barang %s tidak dikenal. " % (self.id, barang))
 
     def calculate(self):
         self.total = 0
