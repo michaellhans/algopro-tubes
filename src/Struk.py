@@ -14,7 +14,8 @@ class Struk:
         self.transactions = []
 
     def insert(self, barang, jumlah):
-        self.transactions.append(Transaksi(barang, jumlah, self.id))
+        transaksi = Transaksi(barang, jumlah, self.id)
+        self.transactions.append(transaksi)
 
     def calculate(self):
         self.total = 0
@@ -48,7 +49,3 @@ class Struk:
             return 'PAYMENT pada struk ' + self.id + ' berhasil. '\
                 'Pembayaran ' + str(self.payment) + '. Total Pembelian ' + str(self.total) + '. '\
                 'Kembalian ' + str(self.exchange) + '. Struk berhasil disimpan dan dihapus dari struk aktif.'
-
-        
-
-    

@@ -27,8 +27,6 @@ class Database:
             return self.tabel_struk[(self.tabel_struk['date'] >= start_date) & (self.tabel_struk['end_date'] <= end_date)]
 
     def save(self):
-        print(self.tabel_transaksi)
-        print(self.tabel_struk)
         self.tabel_transaksi.to_csv(PATH + "T_TRANSAKSI.csv", index=False)
         self.tabel_struk.to_csv(PATH + 'T_STRUK.csv', index=False)
 
