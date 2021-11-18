@@ -67,14 +67,17 @@ class System:
 
     def display_struk(self, start_date, end_date):
         # TO DO LIST
+        # HINT: Backend codenya ada di Database
         pass
 
     def display_peak(self, start_date="", end_date=""):
         # TO DO LIST
+        # HINT: Backend codenya ada di Database
         pass
 
     def best_product(self, start_date="", end_date=""):
         # TO DO LIST
+        # HINT: Backend codenya ada di Database
         pass
 
     def check_active_struk(self, error_message):
