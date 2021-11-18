@@ -10,10 +10,12 @@ class Database:
         self.tabel_transaksi = pd.read_csv(PATH + "T_TRANSAKSI.csv")
 
     def insert_struk(self, data):
-        self.tabel_struk.append(data)
+        print(self.tabel_struk)
+        self.tabel_struk = self.tabel_struk.append(data, ignore_index=True)
+        print(self.tabel_struk)
 
     def insert_transaksi(self, data):
-        self.tabel_transaksi.append(data)
+        self.tabel_transaksi = self.tabel_transaksi.append(data, ignore_index=True)
 
     def select_barang(self, barang):
         return self.tabel_barang[self.tabel_barang['nama_barang'] == barang].iloc[0]
@@ -25,8 +27,9 @@ class Database:
             return self.tabel_struk[(self.tabel_struk['date'] >= start_date) & (self.tabel_struk['end_date'] <= end_date)]
 
     def save(self):
-        self.tabel_barang.to_csv(PATH + "T_BRG.csv")
-        self.tabel_struk.to_csv(PATH + 'T_STRUK.csv')
+        print(self.tabel_transaksi)
+        print(self.tabel_struk)
+        self.tabel_transaksi.to_csv(PATH + "T_TRANSAKSI.csv", index=False)
+        self.tabel_struk.to_csv(PATH + 'T_STRUK.csv', index=False)
 
 DB = Database()
-print(DB.select_barang("Indomie Goreng")['ID_barang'])

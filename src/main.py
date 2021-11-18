@@ -1,8 +1,9 @@
 from Struk import Struk
+from Database import *
 
 # Main program
 class Swalayan:
-    def __init__(self, path: str):
+    def __init__(self):
         self.active_struk = None
     
     def run(self, command: str):
@@ -26,6 +27,8 @@ class Swalayan:
                 self.display_peak(rest_command)
             elif (main_command == 'BEST_PRODUCT'):
                 self.best_product(rest_command)
+            else:
+                raise Exception("Command tidak valid")
         
         except Exception as e:
             print(e)
@@ -33,28 +36,42 @@ class Swalayan:
 
     def create_struk(self):
         self.active_struk = Struk()
-        print("CREATE_STRUK sukses. ID Struk:" + self.active_struk.id + ". Struk aktif:" + self.active_struk.id)
+        print("CREATE_STRUK sukses. ID Struk: " + self.active_struk.id + ". Struk aktif: " + self.active_struk.id)
 
-    def insert_struk(self):
-        pass
+    def insert_struk(self, rest_command):
+        self.check_active_struk()
+        nama_barang, jumlah_barang = rest_command[0].replace('"', ''), int(rest_command[1])
+        self.active_struk.insert(nama_barang, jumlah_barang)
 
     def calculate_struk(self):
-        pass
+        self.check_active_struk()
+        self.active_struk.calculate()
 
-    def payment(self, nominal: int):
-        pass
+    def payment(self, rest_command):
+        self.check_active_struk()
+        nominal = int(rest_command[0])
+        self.active_struk.set_payment(nominal)
+        self.active_struk = None
 
     def cancel_struk(self):
-        pass
+        self.check_active_struk()
+        self.active_struk = None
 
     def display_struk(self, start_date, end_date):
+        # TO DO LIST
         pass
 
     def display_peak(self, start_date="", end_date=""):
+        # TO DO LIST
         pass
 
     def best_product(self, start_date="", end_date=""):
+        # TO DO LIST
         pass
+
+    def check_active_struk(self):
+        if (self.active_struk == None):
+            raise Exception("Struk belum dibuat. Harap gunakan CREATE_STRUK terlebih dahulu")
 
 System = Swalayan()
 print("Selamat datang di Toko Swalayan Algoritma dan Pemrograman B!")

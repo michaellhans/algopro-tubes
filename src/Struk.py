@@ -7,7 +7,7 @@ from Database import *
 class Struk:
     def __init__(self):
         self.id = str(random.randint(10000, 99999))
-        self.date = date.today()
+        self.date = date.today().strftime("%d-%m-%Y")
         self.total = 0
         self.payment = 0
         self.exchange = 0
@@ -32,12 +32,11 @@ class Struk:
         }
     
     def set_payment(self, payment):
-        message = ''
         if (self.total == 0):
-            message = 'Anda belum melakukan kalkulasi atau menentukan barang yang dibeli.'
+            raise Exception('Anda belum melakukan kalkulasi atau menentukan barang yang dibeli.')
 
         elif (payment < self.total):
-            message = 'PAYMENT pada struk ' + self.id + ' gagal. Pembayaran tidak cukup.'
+            raise Exception('PAYMENT pada struk ' + self.id + ' gagal. Pembayaran tidak cukup.')
 
         else:
             self.payment = payment
@@ -45,11 +44,10 @@ class Struk:
             for transaction in self.transactions:
                 DB.insert_transaksi(transaction.to_csv())
             DB.insert_struk(self.to_csv())
-            message = 'PAYMENT pada struk ' + self.id + ' berhasil. '\
-                'Pembayaran ' + self.payment + '. Total Pembelian ' + self.total + '. '\
-                'Kembalian ' + self.exchange + '. Struk berhasil disimpan dan dihapus dari struk aktif.'
-    
-        print(message)
+            DB.save()
+            return 'PAYMENT pada struk ' + self.id + ' berhasil. '\
+                'Pembayaran ' + str(self.payment) + '. Total Pembelian ' + str(self.total) + '. '\
+                'Kembalian ' + str(self.exchange) + '. Struk berhasil disimpan dan dihapus dari struk aktif.'
 
         
 
