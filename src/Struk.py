@@ -46,6 +46,3 @@ class Struk:
                 DB.insert_transaksi(transaction.to_csv())
             DB.insert_struk(self.to_csv())
             DB.save()
-            return 'PAYMENT pada struk ' + self.id + ' berhasil. '\
-                'Pembayaran ' + str(self.payment) + '. Total Pembelian ' + str(self.total) + '. '\
-                'Kembalian ' + str(self.exchange) + '. Struk berhasil disimpan dan dihapus dari struk aktif.'

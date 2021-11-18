@@ -10,9 +10,7 @@ class Database:
         self.tabel_transaksi = pd.read_csv(PATH + "T_TRANSAKSI.csv")
 
     def insert_struk(self, data):
-        print(self.tabel_struk)
         self.tabel_struk = self.tabel_struk.append(data, ignore_index=True)
-        print(self.tabel_struk)
 
     def insert_transaksi(self, data):
         self.tabel_transaksi = self.tabel_transaksi.append(data, ignore_index=True)
