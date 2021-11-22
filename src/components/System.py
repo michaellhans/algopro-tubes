@@ -6,7 +6,7 @@ import re
 class System:
     def __init__(self):
         self.active_struk = None
-    
+
     def run(self, command: str):
         try:
             command_list = command.split(" ", 1)
@@ -34,7 +34,7 @@ class System:
                 raise Exception("Command tidak valid")
 
         except Exception as e:
-            print(e)
+            raise e
 
     def create_struk(self):
         self.active_struk = Struk()
@@ -70,20 +70,39 @@ class System:
         print("STRUK %s berhasil dihapus dari memori." % self.active_struk.id)
         self.active_struk = None
 
+    def _extract_range_time(self, rest_command=''):
+        if (rest_command == None):
+          rest_command = ''
+        start_date = ''
+        end_date = ''
+        rest_command_arr = rest_command.split(" ")
+        try:
+          start_date = rest_command_arr[0]
+          end_date = rest_command_arr[1]
+        except:
+          pass
+        return start_date, end_date
+
     def display_struk(self, rest_command):
         # TO DO LIST
         # HINT: Backend codenya ada di Database
-        pass
+        start_date, end_date = self._extract_range_time(rest_command)
+        result = DB.select_struk(start_date=start_date, end_date=end_date)
+        print(result)
 
     def display_peak(self, rest_command):
         # TO DO LIST
         # HINT: Backend codenya ada di Database
-        pass
+        start_date, end_date = self._extract_range_time(rest_command)
+        result = DB.select_peak(start_date=start_date, end_date=end_date)
+        print(result)
 
     def best_product(self, rest_command):
         # TO DO LIST
         # HINT: Backend codenya ada di Database
-        pass
+        start_date, end_date = self._extract_range_time(rest_command)
+        result = DB.select_best_product(start_date=start_date, end_date=end_date)
+        print(result)
 
     def check_active_struk(self, error_message):
         if (self.active_struk == None):
