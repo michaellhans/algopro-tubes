@@ -54,8 +54,9 @@ Berikut ini adalah tabel basis data yang dirancang dalam aplikasi ini.
 | nama_barang | String      |
 | harga_barang| Integer     |
 <br>
+
 ### 2. Tabel Struk
-| Atribut                      | Type Data   |
+| Atribut                       | Type Data   |
 | ----------------------------- | ----------- |
 | ID_struk                      | String      |
 | tanggal_pembuatan_struk       | Date        |
@@ -63,8 +64,9 @@ Berikut ini adalah tabel basis data yang dirancang dalam aplikasi ini.
 | total_pembayaran              | Integer     |
 | kembalian                     | Integer     |
 <br>
+
 ### 3. Tabel Transaksi
-| Atribut                      | Type Data   |
+| Atribut                       | Type Data   |
 | ----------------------------- | ----------- |
 | ID_struk                      | String      |
 | ID_barang                     | String      |
