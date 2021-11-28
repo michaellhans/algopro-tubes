@@ -34,8 +34,8 @@ class Database:
 
     def select_best_product(self, start_date="", end_date=""):
         result = self.select_struk(start_date=start_date, end_date=end_date)
-        joined_result = result.merge(self.tabel_transaksi[['ID_struk', 'ID_barang']], on='ID_struk', how='left').groupby('ID_barang').aggregate({'total_pembelian': 'sum'}).merge(self.tabel_barang, on='ID_barang', how='left').sort_values(by='total_pembelian', ascending=False)
-        return joined_result[:5]
+        joined_result = result.merge(self.tabel_transaksi[['ID_struk', 'ID_barang', 'jumlah_barang']], on='ID_struk', how='left').groupby('ID_barang').aggregate({'total_pembelian': 'sum', 'jumlah_barang': 'sum'}).merge(self.tabel_barang, on='ID_barang', how='left').sort_values(by='total_pembelian', ascending=False)
+        return joined_result[:5] 
 
     def save(self):
         self.tabel_transaksi.to_csv(PATH + "T_TRANSAKSI.csv", index=False)
