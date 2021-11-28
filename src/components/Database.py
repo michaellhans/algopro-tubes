@@ -8,6 +8,7 @@ class Database:
         self.tabel_barang = pd.read_csv(PATH + "T_BRG.csv")
         self.tabel_barang['ID_barang'] = self.tabel_barang['ID_barang'].astype(str)
         self.tabel_struk = pd.read_csv(PATH + "T_STRUK.csv")
+        self.tabel_struk['total_pembayaran'] = self.tabel_struk['total_pembayaran'].astype(int)
         self.tabel_transaksi = pd.read_csv(PATH + "T_TRANSAKSI.csv")
 
     def insert_struk(self, data):
@@ -29,7 +30,9 @@ class Database:
 
     def select_peak(self, start_date="", end_date=""):
         result = self.select_struk(start_date=start_date, end_date=end_date)
-        joined_result = result.merge(self.tabel_transaksi[['ID_struk', 'ID_barang']], on='ID_struk', how='left').groupby('tanggal_pembuatan_struk').size().sort_values(ascending=False)
+        joined_result = result.merge(self.tabel_transaksi[['ID_struk', 'ID_barang']], on='ID_struk', how='left')
+        joined_result['count'] = joined_result.groupby('tanggal_pembuatan_struk')['tanggal_pembuatan_struk'].transform('count')
+        joined_result = joined_result.groupby('tanggal_pembuatan_struk').aggregate({'total_pembayaran':'sum', 'count': 'max'}).sort_values('count', ascending=False)
         return joined_result[:10]
 
     def select_best_product(self, start_date="", end_date=""):
