@@ -94,15 +94,21 @@ class System:
         # TO DO LIST
         # HINT: Backend codenya ada di Database
         start_date, end_date = self._extract_range_time(rest_command)
-        result = DB.select_peak(start_date=start_date, end_date=end_date)
-        print(result)
+        if start_date <= end_date:
+            result = DB.select_peak(start_date=start_date, end_date=end_date)
+            print(result)
+        else:
+            raise Exception("Date tidak valid")
 
     def best_product(self, rest_command):
         # TO DO LIST
         # HINT: Backend codenya ada di Database
         start_date, end_date = self._extract_range_time(rest_command)
-        result = DB.select_best_product(start_date=start_date, end_date=end_date)
-        print(result)
+        if start_date <= end_date:
+            result = DB.select_best_product(start_date=start_date, end_date=end_date)
+            print(result)
+        else:
+            raise Exception("Date tidak valid")
 
     def check_active_struk(self, error_message):
         if (self.active_struk == None):
