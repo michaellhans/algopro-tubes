@@ -1,6 +1,6 @@
 ID_barang,nama_barang,harga_barang
-1,Pepsodent,1500
-2,Aqua Botol 1 Liter,5000
-3,Indomie Goreng,2000
-4,Cadbury 150gr,15000
-5,Silverqueen 150gr,12000
+PEPSO,Pepsodent,1500
+AQUA,Aqua Botol 1 Liter,5000
+MIE_1,Indomie Goreng,2000
+CADBURY150,Cadbury 150gr,15000
+SILVERQUEEN150,Silverqueen 150gr,12000
