@@ -34,7 +34,7 @@ class System:
                 raise Exception("Command tidak valid")
 
         except Exception as e:
-            raise e
+            print(e)
 
     def create_struk(self):
         self.active_struk = Struk()
