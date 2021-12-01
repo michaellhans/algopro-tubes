@@ -44,7 +44,7 @@ class System:
             elif (main_command == 'HELP'):
                 self.help()
             else:
-                raise Exception("Command tidak valid")
+                raise Exception("Command tidak valid. Gunakan HELP untuk melihat cara penggunaannya.")
 
         except Exception as e:
             print(e)
@@ -131,7 +131,7 @@ class System:
             result = DB.select_peak(start_date=start_date, end_date=end_date)
             print(result)
         else:
-            raise Exception("Date tidak valid")
+            raise Exception("Date tidak valid. Gunakan format DD-MM-YYYY dan pastikan end_date > start_date.")
 
     def best_product(self, rest_command):
         '''
@@ -142,7 +142,7 @@ class System:
             result = DB.select_best_product(start_date=start_date, end_date=end_date)
             print(result)
         else:
-            raise Exception("Date tidak valid")
+            raise Exception("Date tidak valid. Gunakan format DD-MM-YYYY dan pastikan end_date > start_date.")
 
     def check_active_struk(self, error_message):
         '''
