@@ -41,7 +41,9 @@ Jika hanya satu tanggal yang diberikan maka pencarian top 10 dilakukan mulai tan
 Menampilkan top 5 barang yang paling laris pada rentang waktu tertentu. Jika rentang waktu tidak
 diberikan maka pencarian top 5 dilakukan pada semua transaksi. Jika hanya satu tanggal yang
 diberikan maka pencarian top 5 dilakukan mulai dari transaksi yang ada sejak tanggal tersebut.
-9. EXIT<br>
+9. HELP<br>
+Melihat cara penggunaan aplikasi tersebut.
+10. EXIT<br>
 Menutup aplikasi swalayan.
 
 ## Tabel Basis Data
