@@ -1,6 +1,7 @@
 from .Struk import Struk
 from .Database import *
 import re
+from datetime import datetime
 
 # System Class
 class System:
@@ -98,6 +99,19 @@ class System:
         print("STRUK %s berhasil dihapus dari memori." % self.active_struk.id)
         self.active_struk = None
 
+    def _validate_range_date(self, start_date, end_date):
+        if (len(start_date) == 0 or len(end_date) == 0):
+            return True
+        start = datetime.strptime(start_date, '%d-%m-%Y')
+        end = datetime.strptime(end_date, '%d-%m-%Y')
+        return start <= end
+
+    def _validate_date(self, date):
+        if (len(date) == 0):
+            return True
+        datetime.strptime(date, '%d-%m-%Y')
+        return True
+
     def _extract_range_time(self, rest_command=''):
         '''
         Extract range time from rest_command and return start_date and end_date
@@ -112,6 +126,13 @@ class System:
           end_date = rest_command_arr[1]
         except:
           pass
+        try:
+          self._validate_date(start_date)
+          self._validate_date(end_date)
+          if (not self._validate_range_date(start_date, end_date)):
+              raise Exception()
+        except:
+          raise Exception("Date tidak valid. Gunakan format DD-MM-YYYY dan pastikan end_date >= start_date.")
         return start_date, end_date
 
     def display_struk(self, rest_command):
@@ -127,22 +148,16 @@ class System:
         Display Peak Functionality to return all peak date for the sales based on user command
         '''
         start_date, end_date = self._extract_range_time(rest_command)
-        if start_date <= end_date:
-            result = DB.select_peak(start_date=start_date, end_date=end_date)
-            print(result)
-        else:
-            raise Exception("Date tidak valid. Gunakan format DD-MM-YYYY dan pastikan end_date > start_date.")
+        result = DB.select_peak(start_date=start_date, end_date=end_date)
+        print(result)
 
     def best_product(self, rest_command):
         '''
         Best Product Functionality to return all best product based on user command
         '''
         start_date, end_date = self._extract_range_time(rest_command)
-        if start_date <= end_date:
-            result = DB.select_best_product(start_date=start_date, end_date=end_date)
-            print(result)
-        else:
-            raise Exception("Date tidak valid. Gunakan format DD-MM-YYYY dan pastikan end_date > start_date.")
+        result = DB.select_best_product(start_date=start_date, end_date=end_date)
+        print(result)
 
     def check_active_struk(self, error_message):
         '''
@@ -169,5 +184,3 @@ class System:
             10. EXIT \n"
 
         print(help_info)
-
-

@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 
 PATH = "database/"
 
@@ -36,6 +37,9 @@ class Database:
         '''
         return self.tabel_barang[self.tabel_barang['nama_barang'] == barang].iloc[0]
 
+    def _convert_date(self, date):
+        return datetime.strptime(date, '%d-%m-%Y')
+
     def select_struk(self, start_date="", end_date=""):
         '''
         Select all struk between start_date and end_date
@@ -44,9 +48,9 @@ class Database:
         '''
         result = self.tabel_struk
         if (start_date):
-          result = result[result['tanggal_pembuatan_struk'] >= start_date]
+          result = result[result['tanggal_pembuatan_struk'].map(self._convert_date) >= self._convert_date(start_date)]
         if (end_date):
-          result = result[result['tanggal_pembuatan_struk'] <= end_date]
+          result = result[result['tanggal_pembuatan_struk'].map(self._convert_date) <= self._convert_date(end_date)]
         return result
 
     def select_peak(self, start_date="", end_date=""):
@@ -70,7 +74,7 @@ class Database:
         result = self.select_struk(start_date=start_date, end_date=end_date)
         joined_result = result.merge(self.tabel_transaksi[['ID_struk', 'ID_barang', 'jumlah_barang']], on='ID_struk', how='left').groupby('ID_barang').aggregate({'total_pembelian': 'sum', 'jumlah_barang': 'sum'}).merge(self.tabel_barang, on='ID_barang', how='left').sort_values(by='total_pembelian', ascending=False)
         joined_result = joined_result.reset_index(drop=True)
-        return joined_result[:5] 
+        return joined_result[:5]
 
     def save(self):
         '''
