@@ -141,7 +141,10 @@ class System:
         '''
         start_date, end_date = self._extract_range_time(rest_command)
         result = DB.select_struk(start_date=start_date, end_date=end_date)
-        print(result)
+        if (len(result) > 0):
+            print(result)
+        else:
+            print("Tidak ada data yang sesuai pada rentang waktu tersebut.")
 
     def display_peak(self, rest_command):
         '''
@@ -149,7 +152,10 @@ class System:
         '''
         start_date, end_date = self._extract_range_time(rest_command)
         result = DB.select_peak(start_date=start_date, end_date=end_date)
-        print(result)
+        if (len(result) > 0):
+            print(result)
+        else:
+            print("Tidak ada data yang sesuai pada rentang waktu tersebut.")
 
     def best_product(self, rest_command):
         '''
@@ -157,7 +163,10 @@ class System:
         '''
         start_date, end_date = self._extract_range_time(rest_command)
         result = DB.select_best_product(start_date=start_date, end_date=end_date)
-        print(result)
+        if (len(result) > 0):
+            print(result)
+        else:
+            print("Tidak ada data yang sesuai pada rentang waktu tersebut.")
 
     def check_active_struk(self, error_message):
         '''
